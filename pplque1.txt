@@ -1,0 +1,67 @@
+
+        1 )  How  do the  declarations  look in  the  GIMPLE? Specifically,  what
+            happens to multiple  variables declared and initialized  on the same
+            line? What happens to global declaration [int Z]?
+
+
+int Z;                                                                                                   |main ()
+                                                                                                         |{
+        void main()                                                                                      |  int a;
+        {                                                                                                |  int b;
+                int a, b, c;                                                                             |  int c;
+                int p = 6;                                                                               |  int p;
+                int q;                                                                                   |  int q;
+                double r;                                                                                |  double r;
+                                                                                                         |
+                a = 10;                                                                                  |  p = 6;
+                b = 20;                                                                                  |  a = 10;
+                c = a * b + 25;                                                                          |  b = 20;
+                p = 6;                                                                                   |  _1 = a * b;
+                q = Z;                                                                                   |  c = _1 + 25;
+                r = 34.5;                                                                                |  p = 6;
+                Z = r;                                                                                   |  q = Z;
+                Z = Z + 1;                                                                               |  r = 3.45e+1;
+        }                                                                                                |  _2 = (int) r;
+                                                                                                         |  Z = _2;
+                                                                                                         |  Z.0_3 = Z;
+                                                                                                         |  _4 = Z.0_3 + 1;
+                                                                                                         |  Z = _4;
+                                                                                                         |}
+                                                                                                         |                                                                                                     
+                                                                                                                                                                                                         
+          
+           Ans - i) The program is initiated by declaration of variables each one on the different  line.
+                 ii) even though variables of same datatype are declared on same line, the gimple file  contains  each variable on different line.
+                 iii)global variable isn't declared at start . It is used directly into the operations.
+
+
+      
+           2   How are complex  expressions such as [c  = a * b +  25] broken down?
+               Can you  determine a  rule as  to when  temporary variables  will be
+               introduced?
+
+           Ans- i)complex operations are broken down into two or more simpler steps.when there are more than one operators other than the assignment operator ,
+                  temporary variables are used in order to make the operation more simpler. With help of these variables , 
+                  operation is splitted into simple steps.Value of splitted operation is stored into these variables.
+                  in given example , there are two operators * and+.so here  temporary variables come into the picture.       
+
+
+
+
+           3    How are  floats/doubles represented in  GIMPLE? What happens  when a
+                float/double is assigned to an integer in [Z = r]?
+           Ans- type conversions are used to convert float/double to int datatype explicitly.
+                Floats/doubles are denoted using scientific notations.
+
+
+
+           4    How  are reads/writes  to the  global variable  Z performed?  Why is
+                there a temporary introduced  for the statement [Z = Z  + 1] but not
+                for the statements [q = Z] or [Z = p]?
+
+           Ans- A temporary  variable is required for Z = Z + 1 because the result of the computation Z + 1 cannot
+                be written directly to a memory location.In case of q=Z we can write Z value in variable q.
+
+                                                                    
+
+                     

@@ -1,0 +1,120 @@
+ int Z;                                                                                                  |f ()^M
+                                                                                                         |{
+        void f()                                                                                         |  int a;
+        {                                                                                                |  int b;
+                int a, b, c;                                                                             |  int c;
+                a = Z;                                                                                   |
+                if (a < 10) {                                                                            |  a = Z;
+                        b = 5;                                                                           |  if (a <= 9) goto <D.1506>; else goto <D.1507>;
+                        c = 17;                                                                          |  <D.1506>:
+                } else {                                                                                 |  b = 5;
+                        b = 6;                                                                           |  c = 17;
+                        c = 20;                                                                          |  goto <D.1508>;
+                        if (a == 0) {                                                                    |  <D.1507>:
+                                c = 0;                                                                   |  b = 6;
+                        }                                                                                |  c = 20;
+                }                                                                                        |  if (a == 0) goto <D.1509>; else goto <D.1510>;
+                Z = b * 10 + c;                                                                          |  <D.1509>:
+        }                                                                                                |  c = 0;
+                                                                                                         |  <D.1510>:
+~                                                                                                        |  <D.1508>:
+~                                                                                                        |  _1 = b * 10;
+~                                                                                                        |  _2 = c + _1;
+~                                                                                                        |  Z = _2;
+~                                                                                                        |}
+~                                                                                                        |
+~                                                                                                        |
+~                                                                                                        |                                                                                                       
+~                                                                                                        |                                                                                                       
+                                                                                                         |                                                                                                       
+                                                                                                                                                                                                               
+                                                                                                                                                                                                               
+                                                                                                                                                                                                               
+                                              
+      
+                Que. 1   How have if-blocks  been translated into GIMPLE  statements? Can you
+                  
+                         differentiate between conditional and unconditional gotos?
+               
+                 Ans- if blocks are translated to GoTo statements in gimple.Unconditional goto statement is itself a goto statement.
+                      Conditional gotos have two labels for taken and non taken branches.
+                 
+               Que 2      Repeat  the  above compilation,  but  now  asking for  another  dump
+                          that  of  the pass  "cfg".  View  this  pass  and say  whether  this
+                          representation makes it easier to  read and understand GIMPLEs. Draw
+                          the control-flow graph  of the program A-2.c on a  piece of paper by
+                          looking at the CFG dump.
+
+                Ans-     It's easy in order to learn control flow.but maybe complicated in terms of no. of lines.
+
+
+
+
+
+
+
+
+
+
+
+ int Z;                                                                                                  |^M
+                                                                                                         |;; Function f (f, funcdef_no=0, decl_uid=1500, cgraph_uid=1, symbol_order=1)^M
+        void f()                                                                                         |^M
+        {                                                                                                |;; 1 loops found^M
+                int a, b, c;                                                                             |;;^M
+                a = Z;                                                                                   |;; Loop 0^M
+                if (a < 10) {                                                                            |;;  header 0, latch 1^M
+                        b = 5;                                                                           |;;  depth 0, outer -1^M
+                        c = 17;                                                                          |;;  nodes: 0 1 2 3 4 5 6^M
+                } else {                                                                                 |;; 2 succs { 3 4 }^M
+                        b = 6;                                                                           |;; 3 succs { 6 }^M
+                        c = 20;                                                                          |;; 4 succs { 5 6 }^M
+                        if (a == 0) {                                                                    |;; 5 succs { 6 }^M
+                                c = 0;                                                                   |;; 6 succs { 1 }^M
+                        }                                                                                |f ()^M
+                }                                                                                        |{^M
+                Z = b * 10 + c;                                                                          |  int c;^M
+        }                                                                                                |  int b;^M
+                                                                                                         |  int a;^M
+~                                                                                                        |^M
+~                                                                                                        |  <bb 2> :^M
+~                                                                                                        |  a = Z;
+~                                                                                                        |  if (a <= 9)
+~                                                                                                        |    goto <bb 3>; [INV]
+~                                                                                                        |  else
+~                                                                                                        |    goto <bb 4>; [INV]
+~                                                                                                        |^M
+~                                                                                                        |  <bb 3> :^M
+~                                                                                                        |  b = 5;
+~                                                                                                        |  c = 17;
+~                                                                                                        |  goto <bb 6>; [INV]
+~                                                                                                        |^M
+~                                                                                                        |  <bb 4> :^M
+~                                                                                                        |  b = 6;
+~                                                                                                        |  c = 20;
+~                                                                                                        |  if (a == 0)
+~                                                                                                        |    goto <bb 5>; [INV]
+~                                                                                                        |  else
+~                                                                                                        |    goto <bb 6>; [INV]
+~                                                                                                        |^M
+~                                                                                                        |  <bb 5> :^M
+~                                                                                                        |  c = 0;
+~                                                                                                        |^M
+~                                                                                                        |  <bb 6> :^M
+~                                                                                                        |  _1 = b * 10;
+~                                                                                                        |  _2 = c + _1;
+~                                                                                                        |  Z = _2;
+~                                                                                                        |  return;
+~                                                                                                        |^M
+~                                                                                                        |}^M
+~                                                                                                        |^M
+~                                                                                                        |^M
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+A-2.c                                                                                                     A-2.c.012t.cfg                                                                                          
+
+
+
+                                

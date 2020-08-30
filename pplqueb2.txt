@@ -1,0 +1,62 @@
+^M                                                                                                       |^M
+;; Function main (main, funcdef_no=0, decl_uid=1500, cgraph_uid=1, symbol_order=1)^M                     |;; Function main (main, funcdef_no=0, decl_uid=1500, cgraph_uid=1, symbol_order=1)^M
+^M                                                                                                       |^M
+main ()^M                                                                                                |Iterations: 0^M
+{^M                                                                                                      |main ()^M
+  int a;^M                                                                                               |{^M
+  int i;^M                                                                                               |  int a;^M
+  int N.0_1;^M                                                                                           |  int i;^M
+  int _6;^M                                                                                              |  int N.0_1;^M
+^M                                                                                                       |  int _6;^M
+  <bb 2> :^M                                                                                             |^M
+  a_4 = 10;                                                                                              |  <bb 2> :^M
+  i_5 = 0;                                                                                               |  a_4 = 10;
+  goto <bb 4>; [INV]                                                                                     |  i_5 = 0;
+^M                                                                                                       |  goto <bb 4>; [INV]
+  <bb 3> :^M                                                                                             |^M
+  N.0_1 = N;                                                                                             |  <bb 3> :^M
+  a_8 = a_3 + N.0_1;                                                                                     |  N.0_1 = N;
+  i_9 = i_2 + 1;                                                                                         |  a_8 = a_3 + N.0_1;
+^M                                                                                                       |  i_9 = i_2 + 1;
+  <bb 4> :^M                                                                                             |^M
+  # i_2 = PHI <i_5(2), i_9(3)>                                                                           |  <bb 4> :^M
+  # a_3 = PHI <a_4(2), a_8(3)>                                                                           |  # i_2 = PHI <i_5(2), i_9(3)>
+  if (i_2 <= 3)                                                                                          |  # a_3 = PHI <a_4(2), a_8(3)>
+    goto <bb 3>; [INV]                                                                                   |  if (i_2 <= 3)
+  else                                                                                                   |    goto <bb 3>; [INV]
+    goto <bb 5>; [INV]                                                                                   |  else
+^M                                                                                                       |    goto <bb 5>; [INV]
+  <bb 5> :^M                                                                                             |^M
+  _6 = a_3;                                                                                              |  <bb 5> :^M
+  return _6;                                                                                             |  _6 = a_3;
+^M                                                                                                       |  return _6;
+}^M                                                                                                      |^M
+^M                                                                                                       |}^M
+^M                                                                                                       |^M
+~                                                                                                        |^M
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+~                                                                                                        |~                                                                                                       
+B-2.c.019t.ssa                                                                                            B-2.c.025t.einline         
+
+
+          Que 1 . What will happen if "a = a + N" is replaced by "a = a + 1"?
+
+          Ans -   it will return the value 14.                                                                                   
